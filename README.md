@@ -43,4 +43,6 @@ gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.
 
 # Resources
 
-I used mostly youtube videos about the theme especially to undestand how the read function on their primary background, also i use AI as a search engine and geekforgeek foruns, my biggest help was definitely the youtube videos that layout how the read and open command function on a level base. I also used AI to structure this README to help me make it clearer to everyone
+Visual Learning: I utilized YouTube tutorials to visualize how the read() and open() functions operate at a system level, specifically how the file pointer moves during execution.
+
+Research: I used technical forums such as GeeksforGeeks to clarify C syntax and AI tools to help structure the documentation for better readability.
