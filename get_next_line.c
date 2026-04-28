@@ -1,30 +1,93 @@
+#include "get_next_line.h"
 #include <unistd.h>
 
-char *get_next_line(int fd)
+char	*fill_res(int fd, char *res)
 {
-    int n;
-    char    *temp;
-    static char *result;
-    char *line;
+	char	*buf;
+	int		bytes_read;
 
-    n = 1;
-    if(BUFFER_SIZE <= 0)
-    {
-        return(NULL);
-    }
-    temp = malloc(sizeof(char) *(BUFFER_SIZE + 1));
-    while(!ft_strchr(result, '\n') && n != '\0')
-    {
-        n = read(fd,temp,BUFFER_SIZE);
-        if(n == -1)
-        {
-            return(free_all(&result, temp));
-        }
-        temp[n] = '\0';
-        result = ft_strjoin(result, temp);
-    }
-    free(temp);
-    line = ft_get_line(result);
-    result = ft_new_result(result,line);
-    return(line);
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
+	bytes_read = 1;
+	while (!ft_strchr(res, '\n') && bytes_read != 0)
+	{
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buf);
+			return (NULL);
+		}
+		buf[bytes_read] = '\0';
+		res = ft_strjoin(res, buf);
+	}
+	free(buf);
+	return (res);
 }
+
+char	*get_line_only(char *stash)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	if (!stash[0])
+		return (NULL);
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	line = ft_substr(stash, 0, i + 1);
+	return (line);
+}
+
+char	*save_remaining(char *stash)
+{
+	int		i;
+	char	*rest;
+
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (!stash[i])
+	{
+		free(stash);
+		return (NULL);
+	}
+	rest = ft_strdup(stash + i + 1);
+	free(stash);
+	return (rest);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*res;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	res = fill_res(fd, res);
+	if (!res)
+		return (NULL);
+	line = get_line_only(res);
+	res = save_remaining(res);
+	return (line);
+}
+
+//int main()
+//{
+// 	int fd;
+//	char *line;
+//
+//	fd = open("get_next_line.c" , O_RDONLY);
+//	
+	//while ((line = get_next_line(fd)) != NULL)
+//		line = get_next_line(fd);
+//		printf("%s", line);
+// 		line = get_next_line(fd);
+// 	    printf("%s", line); 
+//		line = get_next_line(fd);
+// 	    printf("%s", line); 
+// 	line = get_next_line(fd);
+//    printf("%s", line);  
+//        free(line);        
+//	close(fd);
+//}
