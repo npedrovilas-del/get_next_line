@@ -1,31 +1,42 @@
 *This project has been created as part of the 42 curriculum by pneto-vi.*
 
-# Get_Next_Line
-
-This project involves creating a function that allows reading an entire line from a file descriptor, one line at a time. It serves as a fundamental introduction to the use of static variables in C and efficient memory management during input operations.
-Description
+# Description
 
 The get_next_line function reads content from a file and returns a single line per call. A line is defined as a sequence of characters ending with a newline (\n) or the end of the file.
 
 # Parameter	Description
+
 fd	The file descriptor to read from.
 Return Value	The line read (including the newline character if present) or NULL if an error occurs or the end of the file is reached.
 
 # Logical Workflow
 
-    Read the file into a temporary buffer.
+Open the file and pass it to fd, after that we call the function get_next line
 
-    Append the buffer content to a static variable that stores the accumulated data.
+Get_next line:
 
-    Search for a newline character within the accumulated string.
+Fill_res:
 
-    Extract the line up to the newline to be returned.
+Calls the function fill_res that is going to read the file and pass the whole line in a loop to the string res like this (can take more than its supposed if the BUFFER_SIZE is to big that's why we call the next function get_line_only).
 
-    Update the static variable to retain only the data following the extracted line.
+![fill_res](imgs/fill_res.png)
 
-# Usage
+Get_line_only:
 
-To integrate the function into a project, include the source files and define the buffer size during compilation.
+When we receive the res string after the fill_res it can contain more than just the line if the BUFFER_SIZE is too big because the read reads the file in "chunks" so we use this function to verify if it's just the line that is there.
+
+![get_line_only](imgs/get_line_only.png)
+
+Save_remaining:
+
+We save the rest of the file still not read on a static char so we can keep it between function, so we don't read the same line over and over again.
+
+![save_remaining](imgs/save_remaining.png)
+
+# Instructions
+
+To integrate the function into a project, include the source files and define the buffer size during compilation or use the default that as been defined in the header.
+
 Compilation
 
 Example using a buffer size of 32:
@@ -45,4 +56,4 @@ gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.
 
 Visual Learning: I utilized YouTube tutorials to visualize how the read() and open() functions operate at a system level, specifically how the file pointer moves during execution.
 
-Research: I used technical forums such as GeeksforGeeks to clarify C syntax and AI tools to help structure the documentation for better readability.
+Research: I used technical forums such as GeeksforGeeks to clarify C syntax and AI tools to help structure the documentation for better readability(grammatically). Also used the paint to make my workflow more understandable for new viewers.

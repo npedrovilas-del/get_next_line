@@ -6,7 +6,7 @@
 /*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 17:59:59 by pneto-vi          #+#    #+#             */
-/*   Updated: 2026/04/28 18:00:01 by pneto-vi         ###   ########.fr       */
+/*   Updated: 2026/05/01 19:13:29 by pneto-vi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,20 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-//int main()
-//{
+// int main()
+// {
 // 	int fd;
-//	char *line;
-//
-//	fd = open("get_next_line.c" , O_RDONLY);
-//	
-	//while ((line = get_next_line(fd)) != NULL)
-//		line = get_next_line(fd);
-//		printf("%s", line);
+// 	char *line;
+
+// 	fd = open("get_next_line.c" , O_RDONLY);
+// 		line = get_next_line(fd);
+// 		printf("%s", line);
 // 		line = get_next_line(fd);
 // 	    printf("%s", line); 
-//		line = get_next_line(fd);
+// 		line = get_next_line(fd);
 // 	    printf("%s", line); 
 // 	line = get_next_line(fd);
 //    printf("%s", line);  
 //        free(line);        
-//	close(fd);
-//}
+// 	close(fd);
+// }

@@ -6,12 +6,16 @@
 /*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 17:59:35 by pneto-vi          #+#    #+#             */
-/*   Updated: 2026/04/28 18:00:26 by pneto-vi         ###   ########.fr       */
+/*   Updated: 2026/05/01 19:06:19 by pneto-vi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdio.h>
 # include <stdlib.h>
